@@ -35,7 +35,7 @@
 - [mercari](https://www.mercari.com/jp//)
 
 ## 進捗状況
-- 20%完了
+- 25%完了
 次のタスク
-- 商品購入ページ作成
+- Productモデルにカテゴリーを追加
 

@@ -1,0 +1,65 @@
+<%= render 'layouts/header'%>
+<main class="bg-light">
+    <div>
+        <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
+                <li class="breadcrumb-item"><%=link_to "商品詳細", @product %></li>
+            </ol>
+        </nav>
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-8 offset-2">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <%= @product.name %>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <%= image_tag("#{@product.picture}", class: "card-img-top")%>
+                                </div>
+                                <div class="col-6">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width:40%">出品者</th>
+                                                <td style="width:60%">test</td>
+                                            </tr>
+                                            <tr>
+                                                <th>カテゴリー</th>
+                                                <td>test</td>
+                                            </tr>
+                                            <tr>
+                                                <th>商品の状態</th>
+                                                <td>test</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 py-3">
+                                    <div class>
+                                        <p>非常に良い状態です</p>
+                                    <div>
+                                <div>
+                                <div class="col-12 py-3">
+                                    <div class="text-center">
+                                        <h2>¥<%= @product.price %>円</h2>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="list-group text-center">
+                                        <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                            <%= content_tag(:span, '購入する', class: "text-white") %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%= render 'layouts/footer'%> 
