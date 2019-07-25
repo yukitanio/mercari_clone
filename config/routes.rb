@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  get 'products/top'
+  root "products#top"
+  get 'products/index'
 end

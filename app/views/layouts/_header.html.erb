@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row py-3">
             <div class="col-3 text-right">
-                <a href="#" class="navbar-brand">
-                    <img src="/assets/logo.png" width="134" height="40">
-                </a>
+            <%= link_to root_path, class: "navbar-brand" do %>
+                <%= image_tag("logo.png", width: "134", height: "40") %>
+            <% end %>
             </div>
             <div class="col-9">
                 <form>
