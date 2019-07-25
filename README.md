@@ -35,7 +35,7 @@
 - [mercari](https://www.mercari.com/jp//)
 
 ## 進捗状況
-- 0%完了
+- 10%完了
 次のタスク
-- 各ページのコーディング
+- homeページ作成
 
