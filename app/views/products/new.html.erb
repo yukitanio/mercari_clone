@@ -21,6 +21,9 @@
                     <h5>商品名前</h5>
                     <%= f.text_field :name, class: 'form-control' %>
                     <hr>
+                    <h5>カテゴリー</h5>
+                    <%= f.select :categories, Product.categories.keys.to_a, {} %>
+                    <hr>
                     <h5>価格</h5>
                     <%= f.text_field :price, class: 'form-control' %>
                     <hr>
