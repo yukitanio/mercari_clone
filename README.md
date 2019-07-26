@@ -35,9 +35,7 @@
 - [mercari](https://www.mercari.com/jp//)
 
 ## 進捗状況
-- 28%完了
+- 35%完了
 次のタスク
-- Productモデルにステータスを追加
-- Productモデルにコメントを追加
-- Productモデルに取引状態を追加
+- Userモデルの作成
 
