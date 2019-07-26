@@ -1,0 +1,24 @@
+<%= render 'layouts/header'%>
+<hr>
+<main>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="category-list-head pb-3">カテゴリー一覧</h2>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <% Product.categories.each do |categories, i|%>
+                        <%= search_form_for @q, url: products_path do |f| %>
+                                <%= f.hidden_field :categories, value: categories %>
+                                <%= f.submit "#{categories}", class: "btn btn-outline-secondary mb-2"%>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<%= render 'layouts/footer'%> 

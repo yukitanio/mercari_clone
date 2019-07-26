@@ -9,12 +9,14 @@
             <div class="col-9">
                 <form>
                     <div class="form-row">
-                        <div class="col-8">
-                            <input type="text" class="form-control" placeholder="何かお探しですか？">
-                        </div>
-                        <div class="col-4">
-                            <button class="btn btn-outline-info" type="submit">検索</button>
-                        </div>
+                        <%= search_form_for @q, url: products_path do |f| %>
+                            <div class="col-8">
+                                <%= f.search_field :name_or_content_cont, class: 'form-control', placeholder: "何かお探しですか？" %>
+                            </div>
+                            <div class="col-4">
+                                <%= f.submit "検索", class: "btn btn-outline-info"%>
+                            </div>
+                        <% end %>
                     </div>
                 </form>
             </div>
@@ -23,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark font-weight-bold">カテゴリーから探す</a>
+                        <%=link_to "カテゴリーから探す", category_list_path, class:"nav-link text-dark font-weight-bold" %>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

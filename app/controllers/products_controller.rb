@@ -1,13 +1,17 @@
 class ProductsController < ApplicationController
+  
   def top
+    @q = Product.ransack(params[:q])
     @products = Product.take(8)
   end
 
   def index
-    @products = Product.all
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true)
   end
 
   def show
+    @q = Product.ransack(params[:q])
     @product = Product.find(params[:id])
   end
 
@@ -43,6 +47,11 @@ class ProductsController < ApplicationController
     redirect_to root_path
   end
 
+  def category_list
+    @q = Product.ransack(params[:q])
+    @product = Product.new
+  end
+
   def transaction_status
     @product = Product.find(params[:id])
     if @product.transaction_status_before_type_cast == 0
@@ -56,6 +65,6 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:picture, :name, :price)
+      params.require(:product).permit(:picture, :name, :price, :categories, :status, :content)
     end
 end
