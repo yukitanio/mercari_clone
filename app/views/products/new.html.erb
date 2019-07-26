@@ -7,24 +7,28 @@
             <% end %>
             </div>
         </div>
+        <%= render 'layouts/message'%>
         <div class="card">
             <div class="card-header text-center">
                 商品の情報を入力
             </div>
             <div class="card-body">
                 <%= form_for(@product) do |f| %>
-                    <h5>出品画像</h5>
+                    <h5>出品画像(必須)</h5>
                     <span class="picture">
                         <%= f.file_field :picture %>
                     </span>
                     <hr>
-                    <h5>商品名前</h5>
+                    <h5>商品名前(必須)</h5>
                     <%= f.text_field :name, class: 'form-control' %>
                     <hr>
                     <h5>カテゴリー</h5>
                     <%= f.select :categories, Product.categories.keys.to_a, {} %>
                     <hr>
-                    <h5>価格</h5>
+                    <h5>商品説明</h5>
+                    <%= f.text_area :content, class: 'form-control', placeholder: "250字まで"%>
+                    <hr>
+                    <h5>価格(必須)</h5>
                     <%= f.text_field :price, class: 'form-control' %>
                     <hr>
                     <div class="list-group text-center">
