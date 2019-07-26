@@ -49,12 +49,23 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="list-group text-center">
+                                    <%= form_tag("/product/#{@product.id}/transaction_status", :method => :post) do %>
                                         <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
-                                            <%= content_tag(:span, '購入する', class: "text-white") %>
+                                            <%= content_tag(:span, @product.transaction_status, class: "text-white") %>
                                         <% end %>
-                                        <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
-                                            <%= content_tag(:span, '商品を取り下げる', class: "text-white") %>
-                                        <% end %>
+                                    <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="list-group text-center">
+                                        <%=link_to "商品を編集する", edit_product_path(@product), class: "btn btn-outline-info" %>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="list-group text-center">
+                                        <%=link_to "商品を取り下げる", @product, method: :delete, class: "btn btn-outline-danger" %>
                                     </div>
                                 </div>
                             </div>
