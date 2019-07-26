@@ -32,14 +32,14 @@
                                             </tr>
                                             <tr>
                                                 <th>商品の状態</th>
-                                                <td>test</td>
+                                                <td><%= @product.status %></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="col-12 py-3">
                                     <div class>
-                                        <p>非常に良い状態です</p>
+                                        <p><%= @product.content %></p>
                                     <div>
                                 <div>
                                 <div class="col-12 py-3">
@@ -51,6 +51,9 @@
                                     <div class="list-group text-center">
                                         <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
                                             <%= content_tag(:span, '購入する', class: "text-white") %>
+                                        <% end %>
+                                        <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                            <%= content_tag(:span, '商品を取り下げる', class: "text-white") %>
                                         <% end %>
                                     </div>
                                 </div>
