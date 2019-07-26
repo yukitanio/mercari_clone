@@ -35,7 +35,7 @@
 - [mercari](https://www.mercari.com/jp//)
 
 ## 進捗状況
-- 35%完了
+- 40%完了
 次のタスク
-- Userモデルの作成
+- Userマイページ作成
 
