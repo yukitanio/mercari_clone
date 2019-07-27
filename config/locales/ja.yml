@@ -1,5 +1,18 @@
 ---
 ja:
+  enums:
+    product:
+      status:
+        verygood: 非常に良い
+        good: 良い
+        normal: 普通
+        bad: 悪い
+        verybad: 非常に悪い
+      transaction_status:
+        purchase: 購入する
+        inprocess: 購入処理中
+        sold: 売却済み
+
   activerecord:
     errors:
       messages:
