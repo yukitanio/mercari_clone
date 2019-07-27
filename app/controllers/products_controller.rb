@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :ransack_set
   
   def top
-    @products = Product.take(8)
+    @products = Product.last(8)
   end
 
   def index
@@ -54,13 +54,13 @@ class ProductsController < ApplicationController
 
   def transaction_status
     @product = Product.find(params[:id])
-    if @product.transaction_status_before_type_cast == 0
-      @product.update_attribute(:transaction_status, 1)
+    if @product.purchase? && @product.inprocess!
       flash[:notice] = "ありがとうございました。商品発送までしばらくお待ちください"
       redirect_to @product
-    else
-      @product.update_attribute(:transaction_status, 2)
+    elsif @product.inprocess? && @product.sold! 
       redirect_to @product
+    else
+      render 'show'
     end
   end
 
