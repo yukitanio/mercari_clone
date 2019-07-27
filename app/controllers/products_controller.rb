@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = @q.result(distinct: true)
+    @products = @q.result(distinct: true).page(params[:page])
   end
 
   def show

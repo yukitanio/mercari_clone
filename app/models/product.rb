@@ -7,4 +7,5 @@ class Product < ApplicationRecord
     validates :picture, presence: true
     validates :price, presence: true
     validates :content, length: {maximum: 250}
+    paginates_per 40
 end
