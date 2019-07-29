@@ -41,10 +41,6 @@ class ProductsController < ApplicationController
     redirect_to root_path
   end
 
-  def category_list
-    @product = Product.new
-  end
-
   def transaction_status
     if @product.purchase? && @product.inprocess!
       flash[:notice] = "ありがとうございました。商品発送までしばらくお待ちください"
