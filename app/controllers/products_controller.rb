@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :ransack_set, only:[:index, :show]
-  before_action :find_product, only:[:show, :edit, :update, :destroy,:transaction_status]
+  before_action :find_product, only:[:show, :edit, :update, :destroy]
 
   def index
     @products = @q.result(distinct: true).page(params[:page])
@@ -39,17 +39,6 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     redirect_to root_path
-  end
-
-  def transaction_status
-    if @product.purchase? && @product.inprocess!
-      flash[:notice] = "ありがとうございました。商品発送までしばらくお待ちください"
-      redirect_to @product
-    elsif @product.inprocess? && @product.sold! 
-      redirect_to @product
-    else
-      render 'show'
-    end
   end
 
   private

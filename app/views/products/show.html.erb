@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="list-group text-center">
-                                    <%= form_tag("/product/#{@product.id}/transaction_status", :method => :post) do %>
+                                    <%= form_tag("/purchases/#{@product.id}", :method => :put) do %>
                                         <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
                                             <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
                                         <% end %>

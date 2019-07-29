@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   root "top_pages#index"
-  resources :categories, only:[:index]
-  # get 'categories/index'
   resources :products
-  post "/product/:id/transaction_status", to: 'products#transaction_status'
+  resources :categories, only:[:index]
+  resources :purchases, only:[:update]
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
