@@ -1,10 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :ransack_set
+  before_action :ransack_set, only:[:index, :show]
   before_action :find_product, only:[:show, :edit, :update, :destroy,:transaction_status]
-  
-  def top
-    @products = Product.last(8)
-  end
 
   def index
     @products = @q.result(distinct: true).page(params[:page])
@@ -46,7 +42,6 @@ class ProductsController < ApplicationController
   end
 
   def category_list
-    @q = Product.ransack(params[:q])
     @product = Product.new
   end
 
@@ -64,10 +59,6 @@ class ProductsController < ApplicationController
   private
     def product_params
       params.require(:product).permit(:picture, :name, :price, :status, :content, category_ids: [])
-    end
-
-    def ransack_set
-      @q = Product.ransack(params[:q])
     end
 
     def find_product
