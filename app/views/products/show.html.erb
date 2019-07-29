@@ -30,7 +30,12 @@
                                             </tr>
                                             <tr>
                                                 <th>カテゴリー</th>
-                                                <td><%= @product.categories %></td>
+                                                <td>
+                                                <% @product.categories.each do |category|%>
+                                                    <%= category.name %> 
+                                                    <br>
+                                                <% end %>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th>商品の状態</th>

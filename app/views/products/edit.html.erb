@@ -7,6 +7,7 @@
             <% end %>
             </div>
         </div>
+        <%= render 'layouts/message'%>
         <div class="card">
             <div class="card-header text-center">
                 商品の情報を編集
@@ -22,7 +23,12 @@
                     <%= f.text_field :name, class: 'form-control' %>
                     <hr>
                     <h5>カテゴリー</h5>
-                    <%= f.select :categories, Product.categories.keys.to_a, {} %>
+                    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|  %>
+                        <%= category.label do %>
+                             <%= category.check_box %> 
+                             <%= category.text %> 
+                        <% end %> 
+                    <% end  %>
                     <hr>
                     <h5>価格</h5>
                     <%= f.text_field :price, class: 'form-control' %>

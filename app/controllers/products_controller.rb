@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :ransack_set
+  before_action :find_product, only:[:show, :edit, :update, :destroy,:transaction_status]
   
   def top
     @products = Product.last(8)
@@ -10,11 +11,11 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def new
     @product = Product.new
+    @category = @product.product_categories.build
   end
 
   def create
@@ -28,11 +29,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
       flash[:notice] = "編集しました"
       redirect_to @product
@@ -42,7 +41,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     redirect_to root_path
   end
@@ -53,7 +51,6 @@ class ProductsController < ApplicationController
   end
 
   def transaction_status
-    @product = Product.find(params[:id])
     if @product.purchase? && @product.inprocess!
       flash[:notice] = "ありがとうございました。商品発送までしばらくお待ちください"
       redirect_to @product
@@ -66,10 +63,14 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:picture, :name, :price, :categories, :status, :content)
+      params.require(:product).permit(:picture, :name, :price, :status, :content, category_ids: [])
     end
 
     def ransack_set
       @q = Product.ransack(params[:q])
+    end
+
+    def find_product
+      @product = Product.find(params[:id])
     end
 end

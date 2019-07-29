@@ -23,7 +23,12 @@
                     <%= f.text_field :name, class: 'form-control' %>
                     <hr>
                     <h5>カテゴリー</h5>
-                    <%= f.select :categories, Product.categories.keys.to_a, {} %>
+                    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|  %>
+                        <%= category.label do %>
+                             <%= category.check_box %> 
+                             <%= category.text %> 
+                        <% end %> 
+                    <% end  %>
                     <hr>
                     <h5>商品説明</h5>
                     <%= f.text_area :content, class: 'form-control', placeholder: "250字まで"%>
