@@ -4,10 +4,13 @@
         <nav aria-label="breadcrumb" role="navigation">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
-                <li class="breadcrumb-item"><%=link_to "商品詳細", @product %></li>
+                <li class="breadcrumb-item"><%=link_to "マイページ", @product %></li>
             </ol>
         </nav>
         <div class="container">
+            <% if notice.present? %>
+            <div class="alert alert-success pl-5"><%= notice %></div>
+            <% end%>
             <div class="row mb-3">
                 <div class="col-3 mr-5">
                     <div class="card">
