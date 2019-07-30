@@ -1,0 +1,48 @@
+<%= render 'layouts/header'%>
+<main class="bg-light">
+    <div>
+        <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
+                <li class="breadcrumb-item"><%=link_to "ユーザー一覧", @product %></li>
+            </ol>
+        </nav>
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-3 mr-5">
+                    <div class="card">
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action">マイページ</button>
+                            <button type="button" class="list-group-item list-group-item-action">お知らせ</button>
+                            <button type="button" class="list-group-item list-group-item-action">出品する</button>
+                            <button type="button" class="list-group-item list-group-item-action">出品した商品-出品中</button>
+                            <button type="button" class="list-group-item list-group-item-action">出品した商品-取引中</button>
+                            <button type="button" class="list-group-item list-group-item-action">出品した商品-売却済</button>
+                            <button type="button" class="list-group-item list-group-item-action">購入した商品-取引中</button>
+                            <button type="button" class="list-group-item list-group-item-action">購入した商品-過去の取引</button>
+                            <button type="button" class="list-group-item list-group-item-action">お問い合わせ</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 bg-white">
+                    <% @users.each do |user|%>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="profile-img pt-3">
+                                    <%= image_tag("#{user.profile.picture}") %>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="profile-name">
+                                    <h2 class="pt-5"><%= user.profile.name %></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%= render 'layouts/footer'%> 

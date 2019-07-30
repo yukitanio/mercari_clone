@@ -55,13 +55,13 @@ Product.create!(
     picture: open("app/assets/images/item_8.png"),
     category_ids: 4)
 
-User.create!(
-    email: "test@example.com",
-    password: "123456"
-)
+# User.create!(
+#     email: "test@example.com",
+#     password: "123456"
+# )
 
-Profile.create!(
-    name: "山田太郎",
-    content: "迅速に対応します。"
-    user_id: 1
-)
+# Profile.create!(
+#     name: "山田太郎",
+#     content: "迅速に対応します。"
+#     user_id: 1
+# )

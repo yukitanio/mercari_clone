@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions',
     :passwords => 'users/passwords'
   } 
+  resources :profiles
 end
