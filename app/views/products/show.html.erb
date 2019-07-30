@@ -26,7 +26,7 @@
                                         <tbody>
                                             <tr>
                                                 <th style="width:40%">出品者</th>
-                                                <td style="width:60%">test</td>
+                                                <td style="width:60%"><%= @user.profile.name %></td>
                                             </tr>
                                             <tr>
                                                 <th>カテゴリー</th>
@@ -54,28 +54,70 @@
                                         <h2>¥<%= @product.price %>円</h2>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="list-group text-center">
-                                    <%= form_tag("/purchases/#{@product.id}", :method => :put) do %>
-                                        <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
-                                            <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
+                                <% if user_signed_in? && current_user.id != @product.user_id && @product.purchase? %>
+                                    <div class="col-12">
+                                        <div class="list-group text-center">
+                                        <%= form_tag("/purchases/#{@product.id}", :method => :put) do %>
+                                            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                                <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
+                                            <% end %>
                                         <% end %>
-                                    <% end %>
+                                        </div>
                                     </div>
-                                </div>
+                                <% elsif user_signed_in? && current_user.id != @product.user_id && @product.inprocess?%>
+                                    <div class="col-12">
+                                        <div class="list-group text-center">
+                                            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                                <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
+                                        <% end %>
+                                        </div>
+                                    </div>
+                                <% elsif user_signed_in? && current_user.id == @product.user_id && @product.inprocess?%>
+                                    <div class="col-12">
+                                        <div class="list-group text-center">
+                                        <%= form_tag("/purchases/#{@product.id}", :method => :put) do %>
+                                            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                                <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
+                                            <% end %>
+                                        <% end %>
+                                        </div>
+                                    </div>
+                                <% elsif user_signed_in?  && @product.sold?%>
+                                    <div class="col-12">
+                                        <div class="list-group text-center">
+                                            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                                <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
+                                        <% end %>
+                                        </div>
+                                    </div>
+                                <% elsif !user_signed_in? %>
+                                    <div class="col-12">
+                                        <div class="list-group text-center">
+                                            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+                                                <%= content_tag(:span, @product.transaction_status_i18n, class: "text-white") %>
+                                        <% end %>
+                                        </div>
+                                        <hr>
+                                        <div class="list-group text-center">
+                                            <%=link_to "ログインorユーザー登録してください", new_user_session_path, class: "btn btn-outline-info" %>
+                                        </div>
+                                    </div>
+                                <% end %>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-6">
-                                    <div class="list-group text-center">
-                                        <%=link_to "商品を編集する", edit_product_path(@product), class: "btn btn-outline-info" %>
+                            <% if user_signed_in? && current_user.id == @product.user_id %>
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <div class="list-group text-center">
+                                            <%=link_to "商品を編集する", edit_product_path(@product), class: "btn btn-outline-info" %>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="list-group text-center">
+                                            <%=link_to "商品を取り下げる", @product, method: :delete, class: "btn btn-outline-danger" %>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="list-group text-center">
-                                        <%=link_to "商品を取り下げる", @product, method: :delete, class: "btn btn-outline-danger" %>
-                                    </div>
-                                </div>
-                            </div>
+                            <% end %>
                         </div>
                     </div>
                 </div>
