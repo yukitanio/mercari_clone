@@ -29,15 +29,6 @@
                         <p class="notice"><%= notice %></p>
                         <p class="alert"><%= alert %></p>
                     </li>
-                    <% if user_signed_in? %> 
-                        <li class="nav-item mr-2">
-                            <p> 現在 <%= current_user.id %> がログインしています </p> 
-                        </li>
-                        <% else %>
-                         <li class="nav-item mr-2">
-                            <p> 現在ログインしていません </p>
-                        </li>
-                    <% end %>
                 </ul>
                 <ul class="navbar-nav">
                     <% if user_signed_in? %> 
