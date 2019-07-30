@@ -17,7 +17,6 @@ class ProfilesController < ApplicationController
     def create
         user = current_user
         @profile = user.build_profile(profile_params)
-        # @profile.picture = 'profile_default.png' if @profile.picture.nil?
         if @profile.save
         flash[:notice] = "登録しました"
         redirect_to @profile

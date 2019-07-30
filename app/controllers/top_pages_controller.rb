@@ -2,6 +2,6 @@ class TopPagesController < ApplicationController
     before_action :ransack_set
     
     def index
-        @products = Product.last(8)
+        @products = Product.order(id: "DESC").first(8)
     end
 end
