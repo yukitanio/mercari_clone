@@ -1,0 +1,65 @@
+<header>
+    <div class="container">
+        <div class="row py-3">
+            <div class="col-3 text-right">
+            <%= link_to root_path, class: "navbar-brand" do %>
+                <%= image_tag("logo.png", width: "134", height: "40") %>
+            <% end %>
+            </div>
+            <div class="col-9">
+                <%= search_form_for @q, url: products_path do |f| %>
+                    <div class="form-row">
+                        <div class="col-8">
+                            <%= f.search_field :name_or_content_cont, class: 'form-control', placeholder: "何かお探しですか？" %>
+                        </div>
+                        <div class="col-4">
+                            <%= f.submit "検索", class: "btn btn-outline-info"%>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <%=link_to "カテゴリーから探す", categories_path, class:"nav-link text-dark font-weight-bold" %>
+                    </li>
+                    <li class="nav-item">
+                        <p class="notice"><%= notice %></p>
+                        <p class="alert"><%= alert %></p>
+                    </li>
+                    <% if user_signed_in? %> 
+                        <li class="nav-item mr-2">
+                            <p> 現在 <%= current_user.id %> がログインしています </p> 
+                        </li>
+                        <% else %>
+                         <li class="nav-item mr-2">
+                            <p> 現在ログインしていません </p>
+                        </li>
+                    <% end %>
+                </ul>
+                <ul class="navbar-nav">
+                    <% if user_signed_in? %> 
+                        <li class="nav-item text-right pl-1">
+                            <%=link_to "出品する", new_product_path, class:"navlink btn btn-danger" %>
+                        </li>
+                        <li class="nav-item text-right pl-1">
+                            <%=link_to "マイページ", profile_path(current_user), class:"navlink btn btn-info" %>
+                        </li>
+                        <li class="nav-item text-right pl-1">
+                            <%=link_to "ログアウト", destroy_user_session_path, method: :delete, class:"navlink btn btn-outline-secondary" %>
+                        </li>
+                    <% else %>
+                        <li class="nav-item mr-2">
+                            <%=link_to "新規会員登録", new_user_registration_path, class:"navlink btn btn-danger" %>
+                        </li>
+                        <li class="nav-item text-right pl-1">
+                            <%=link_to "ログイン", new_user_session_path, class:"navlink btn btn-outline-primary" %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

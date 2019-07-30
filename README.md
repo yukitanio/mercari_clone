@@ -35,5 +35,7 @@
 - [mercari](https://www.mercari.com/jp//)
 
 ## 進捗状況
-- 0%完了
+- 40%完了
+次のタスク
+- Userマイページ作成
 
