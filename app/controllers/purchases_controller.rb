@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+    before_action :authenticate_user!
 
     def update
         @product = Product.find(params[:id])
@@ -8,6 +9,7 @@ class PurchasesController < ApplicationController
         elsif @product.inprocess? && @product.sold! 
             redirect_to @product
         else
+            flash[:notice] = "エラーが発生しました。再度実行してください。"
             render 'show'
         end
     end

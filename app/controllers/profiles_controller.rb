@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
     before_action :ransack_set
+    before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destory]
 
     def index
         @users = User.page(params[:page]).per(30)
