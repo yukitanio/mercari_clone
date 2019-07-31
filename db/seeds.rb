@@ -8,7 +8,7 @@ Category.create!([
   ])
 
 User.create!(
-    email: "test@example.com",
+    email: "test1@example.com",
     password: "123456"
 )
 
@@ -16,6 +16,16 @@ Profile.create!(
     name: "山田太郎",
     content: "迅速に対応します。",
     user_id: 1)
+
+User.create!(
+    email: "test2@example.com",
+    password: "123456"
+)
+
+Profile.create!(
+    name: "川口浩介",
+    content: "迅速に対応します。",
+    user_id: 2)
 
 Product.create!(
     name: 'リュック', 
