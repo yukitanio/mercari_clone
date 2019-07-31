@@ -9,5 +9,7 @@ class Product < ApplicationRecord
     paginates_per 40
     has_many :product_categories
     has_many :categories, through: :product_categories
+    has_many :users
+    has_many :users, through: :purchases
     belongs_to :user
 end

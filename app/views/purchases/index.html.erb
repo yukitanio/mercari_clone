@@ -15,33 +15,26 @@
                 <%= render 'layouts/sidebar'%>
                 <div class="col-8 bg-white">
                     <div class="row">
-                        <div class="col-3">
-                            <div class="profile-img pt-3">
-                                <%= image_tag("#{@user.profile.picture}") %>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="profile-name">
-                                <h2 class="pt-5"><%= @user.profile.name %></h2>
-                            </div>
+                        <div class="col-12 text-center pt-3">
+                            <h2>購入した商品</h2>
                         </div>
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-12 mb-2">
+                    <div class="row mb-3">
+                    <% @products.each do |product|%>
+                        <div class="col-4">
                             <div class="card">
+                                <%= image_tag("#{product.picture}", class: "card-img-top")%>
                                 <div class="card-body">
-                                    <p><%= @user.profile.content %></p>
+                                    <h4 class="card-title"><%= product.name %></h4>
+                                    <p>¥<%= product.price.to_s(:delimited) %>円</p>
+                                    <%=link_to "商品詳細", product, class: "btn btn-outline-secondary" %>
                                 </div>
                             </div>
                         </div>
+                    <% end %>
                     </div>
-                    <div class="list-group text-center mx-auto w-25">
-                        <%=link_to "プロフィールを編集", edit_profile_path(@profile), class: "btn btn-outline-info" %>
-                    </div>
-                    <div class="list-group text-center mx-auto w-25 mt-3">
-                        <%=link_to "ユーザー削除", user_registration_path, method: :delete, class: "btn btn-outline-danger" %>
-                    </div>
+                    <%= paginate @products %>
                 </div>
             </div>
         </div>

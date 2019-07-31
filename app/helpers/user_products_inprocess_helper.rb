@@ -1,0 +1,2 @@
+module UserProductsInprocessHelper
+end
