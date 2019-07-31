@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb" role="navigation">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
-                <li class="breadcrumb-item"><%=link_to "出品した商品-売却済", @product %></li>
+                <li class="breadcrumb-item"><%=link_to "いいね!した商品", @product %></li>
             </ol>
         </nav>
         <div class="container">
@@ -16,7 +16,7 @@
                 <div class="col-8 bg-white">
                     <div class="row">
                         <div class="col-12 text-center pt-3">
-                            <h2>出品した商品-売却済</h2>
+                            <h2>いいね！した商品</h2>
                         </div>
                     </div>
                     <hr>
@@ -29,11 +29,6 @@
                                     <h4 class="card-title"><%= product.name %></h4>
                                     <p>¥<%= product.price.to_s(:delimited) %>円</p>
                                     <%=link_to "商品詳細", product, class: "btn btn-outline-secondary" %>
-                                    <% if user_signed_in? && current_user.already_liked?(product) %>
-                                        <%=link_to "いいね解除", likes_delete_path(id: product.id), method: :delete, class: "btn btn-outline-secondary" %>
-                                    <% else%>
-                                        <%=link_to "いいね！", likes_create_path(id: product.id), method: :post, class: "btn btn-outline-secondary" %>
-                                    <% end %>
                                 </div>
                             </div>
                         </div>

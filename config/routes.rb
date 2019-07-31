@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   resources :user_products, only:[:index]
   resources :user_products_inprocess, only:[:index]
   resources :user_products_sold, only:[:index]
+  resources :likes, only:[:index]
+  post 'likes/:id', to: 'likes#create', as: :likes_create
+  delete 'likes/:id', to: 'likes#destroy', as: :likes_delete
 end
