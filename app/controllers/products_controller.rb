@@ -17,8 +17,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    user = current_user
-    @product = user.products.build(product_params)
+    @product = current_user.products.build(product_params)
     if @product.save
       flash[:notice] = "出品しました"
       redirect_to @product
@@ -31,8 +30,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    user = current_user
-    @product = user.products.find(params[:id])
+    @product = current_user.products.find(params[:id])
     if @product.update_attributes(product_params)
       flash[:notice] = "編集しました"
       redirect_to @product
@@ -54,4 +52,5 @@ class ProductsController < ApplicationController
     def find_product
       @product = Product.find(params[:id])
     end
+
 end

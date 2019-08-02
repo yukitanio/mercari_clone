@@ -1,17 +1,16 @@
 class PurchasesController < ApplicationController
     before_action :ransack_set
     before_action :authenticate_user!
+    before_action :current_user_set, only:[:index]
 
     def index
-        @user = current_user
         @products = @user.productpurchases.page(params[:page]).per(30)
     end
 
     def update
         @product = Product.find(params[:id])
         if @product.purchase? && @product.inprocess!
-            user = current_user
-            purchase = user.purchases.create(product_id: @product.id)
+            purchase = current_user.purchases.create(product_id: @product.id)
             unless purchase.save
                 flash[:notice] = "エラーが発生しました。再度実行してください。"
                 render 'show'
