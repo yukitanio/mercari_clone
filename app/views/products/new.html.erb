@@ -16,11 +16,11 @@
                 <%= form_for(@product) do |f| %>
                     <h5>出品画像(必須)</h5>
                     <span class="picture">
-                        <%= f.file_field :picture %>
+                        <%= f.file_field :picture, id: 'picture' %>
                     </span>
                     <hr>
                     <h5>商品名前(必須)</h5>
-                    <%= f.text_field :name, class: 'form-control' %>
+                    <%= f.text_field :name, class: 'form-control', id: 'name' %>
                     <hr>
                     <h5>カテゴリー</h5>
                     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|  %>
@@ -34,7 +34,7 @@
                     <%= f.text_area :content, class: 'form-control', placeholder: "250字まで"%>
                     <hr>
                     <h5>価格(必須)</h5>
-                    <%= f.text_field :price, class: 'form-control' %>
+                    <%= f.text_field :price, class: 'form-control', id: 'price' %>
                     <hr>
                     <div class="list-group text-center">
                         <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>

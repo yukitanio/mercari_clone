@@ -16,5 +16,12 @@ module MercariClone
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.i18n.default_locale = :ja
+    config.generators do |g|
+      g.test_framework :rspec,
+        view_spec: false,
+        helper_spec: false,
+        routing_spec: false,
+        request_specs: false
+    end
   end
 end
