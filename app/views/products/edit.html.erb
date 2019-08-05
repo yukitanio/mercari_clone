@@ -1,49 +1,49 @@
 <div class="bg-light input_product">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 pt-3 text-center">
-            <%= link_to root_path, class: "navbar-brand" do %>
-                <%= image_tag("logo.png", width: "134", height: "40") %>
-            <% end %>
-            </div>
-        </div>
-        <%= render 'layouts/message'%>
-        <div class="card">
-            <div class="card-header text-center">
-                商品の情報を編集
-            </div>
-            <div class="card-body">
-                <%= form_for(@product) do |f| %>
-                    <h5>出品画像</h5>
-                    <span class="picture">
-                        <%= f.file_field :picture %>
-                    </span>
-                    <hr>
-                    <h5>商品名前</h5>
-                    <%= f.text_field :name, class: 'form-control' %>
-                    <hr>
-                    <h5>カテゴリー</h5>
-                    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|  %>
-                        <%= category.label do %>
-                             <%= category.check_box %> 
-                             <%= category.text %> 
-                        <% end %> 
-                    <% end  %>
-                    <hr>
-                    <h5>価格</h5>
-                    <%= f.text_field :price, class: 'form-control' %>
-                    <hr>
-                    <div class="list-group text-center">
-                        <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
-                            <%= content_tag(:span, '編集する', class: "text-white") %>
-                        <% end %>
-                    </div>
-                <% end %>
-            </div>
-        </div>
-        <div class="text-center my-3">
-            <%=link_to "戻る", root_path, class: "navlink btn btn-outline-primary" %>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 pt-3 text-center">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag("logo.png", width: "134", height: "40") %>
+        <% end %>
+      </div>
     </div>
+    <%= render 'layouts/message'%>
+    <div class="card">
+      <div class="card-header text-center">
+        商品の情報を編集
+      </div>
+      <div class="card-body">
+        <%= form_for(@product) do |f| %>
+          <h5>出品画像</h5>
+          <span class="picture">
+            <%= f.file_field :picture %>
+          </span>
+          <hr>
+          <h5>商品名前</h5>
+          <%= f.text_field :name, class: 'form-control' %>
+          <hr>
+          <h5>カテゴリー</h5>
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|  %>
+            <%= category.label do %>
+              <%= category.check_box %> 
+              <%= category.text %> 
+            <% end %> 
+          <% end  %>
+          <hr>
+          <h5>価格</h5>
+          <%= f.text_field :price, class: 'form-control' %>
+          <hr>
+          <div class="list-group text-center">
+            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+            <%= content_tag(:span, '編集する', class: "text-white") %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="text-center my-3">
+      <%=link_to "戻る", root_path, class: "navlink btn btn-outline-primary" %>
+    </div>
+  </div>
 </div>
 <%= render 'layouts/footer'  %>

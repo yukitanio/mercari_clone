@@ -1,52 +1,52 @@
 <div class="bg-light input_product">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 pt-3 text-center">
-            <%= link_to root_path, class: "navbar-brand" do %>
-                <%= image_tag("logo.png", width: "134", height: "40") %>
-            <% end %>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header text-center">
-                ログイン
-            </div>
-            <div class="card-body">
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
-                  <%= render "devise/shared/error_messages", resource: resource %>
-                  <div class="field">
-                    <%= f.label :email %><br />
-                    <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", id: 'email'%>
-                  </div>
-                  <hr>
-                  <div class="field">
-                    <%= f.label :password %><br />
-                    <%= f.password_field :password, class: 'form-control', autocomplete: "current-password", id: 'password' %>
-                  </div>
-                  <hr>
-                  <div class="field">
-                    <%= f.label :password_confirmation %><br />
-                    <%= f.password_field :password_confirmation, class: 'form-control',autocomplete: "new-password", id: 'password_confirmation' %>
-                  </div>
-                  <hr>
-                  <% if devise_mapping.rememberable? %>
-                    <div class="field">
-                      <%= f.check_box :remember_me %>
-                      <%= f.label :remember_me %>
-                    </div>
-                  <% end %>
-                  <div class="list-group text-center">
-                        <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
-                            <%= content_tag(:span, 'ログイン', class: "text-white") %>
-                        <% end %>
-                    </div>
-                <% end %>
-                <%= render "users/shared/links" %>
-            </div>
-        </div>
-        <div class="text-center my-3 mb-5">
-            <%=link_to "戻る", root_path, class: "navlink btn btn-outline-primary" %>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 pt-3 text-center">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag("logo.png", width: "134", height: "40") %>
+        <% end %>
+      </div>
     </div>
+    <div class="card">
+      <div class="card-header text-center">
+        ログイン
+      </div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", id: 'email'%>
+          </div>
+          <hr>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, class: 'form-control', autocomplete: "current-password", id: 'password' %>
+          </div>
+          <hr>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, class: 'form-control',autocomplete: "new-password", id: 'password_confirmation' %>
+          </div>
+          <hr>
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+          <div class="list-group text-center">
+            <%= button_tag(type: 'submit', class: "list-group-item list-group-item-action bg-danger") do %>
+              <%= content_tag(:span, 'ログイン', class: "text-white") %>
+            <% end %>
+          </div>
+        <% end %>
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+    <div class="text-center my-3 mb-5">
+      <%=link_to "戻る", root_path, class: "navlink btn btn-outline-primary" %>
+    </div>
+  </div>
 </div>
 <%= render 'layouts/footer'  %>

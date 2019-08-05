@@ -1,20 +1,34 @@
 class LikesController < ApplicationController
-    before_action :ransack_set
-    before_action :authenticate_user!
-    before_action :current_user_set, only:[:index]
+  before_action :ransack_set
+  before_action :authenticate_user!
+  before_action :current_user_set, only:[:index]
+  before_action :set_product, only:[:create, :destroy]
 
-    def index
-        @products = @user.productlikes.page(params[:page]).per(30)
+  def index
+    @products = @user.productlikes.page(params[:page]).per(30)
+  end
+
+  def create
+    like = current_user.likes.build(product: @product)
+    if like.save
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_back(fallback_location: root_path)
     end
+  end
 
-    def create
-        current_user.likes.create!(product_id: params[:id])
-        redirect_back(fallback_location: root_path)
+  def destroy
+    like = Like.find_by(user_id: params[:id], product_id: @product)
+    if like.destroy
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_back(fallback_location: root_path)
     end
+  end
 
-    def destroy
-        @like = Like.find_by(user_id: current_user.id, product_id: params[:id])
-        @like.destroy
-        redirect_back(fallback_location: root_path)
+  private
+
+    def set_product
+      @product = Product.find(params[:product_id])
     end
 end

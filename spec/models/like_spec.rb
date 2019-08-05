@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @product = FactoryBot.create(:product)
+    @user = create(:user)
+    @product = create(:product)
   end
 
   it 'ユーザーはいいね!していない商品にいいね!することができる' do
