@@ -1,10 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :ransack_set
   before_action :authenticate_user!
-  before_action :current_user_set, only:[:index]
 
   def index
-    @products = @user.productpurchases.page(params[:page]).per(30)
+    @products = current_user.productpurchases.page(params[:page])
   end
 
   def update
