@@ -11,8 +11,10 @@ class LikesController < ApplicationController
   def create
     like = current_user.likes.build(product: @product)
     if like.save
+      flash[:notice] = "いいね！しました"
       redirect_back(fallback_location: root_path)
     else
+      flash[:notice] = "いいね！できませんでした。再度実行してください。"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -20,8 +22,10 @@ class LikesController < ApplicationController
   def destroy
     like = Like.find_by(user_id: params[:id], product_id: @product)
     if like.destroy
+      flash[:notice] = "いいね！取り消しました"
       redirect_back(fallback_location: root_path)
     else
+      flash[:notice] = "いいね！取り消しできませんでした。再度実行してください。"
       redirect_back(fallback_location: root_path)
     end
   end
