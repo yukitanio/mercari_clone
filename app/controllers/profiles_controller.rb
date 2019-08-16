@@ -37,12 +37,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def destroy
-    @profile = @user.profile
-    @profile.destroy
-    redirect_to root_path
-  end
-
   private
     def profile_params
       params.require(:profile).permit(:picture, :name, :content)
