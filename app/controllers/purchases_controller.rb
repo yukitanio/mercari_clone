@@ -8,19 +8,16 @@ class PurchasesController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if @product.purchase? && @product.inprocess!
-      purchase = current_user.purchases.create(product_id: @product.id)
-      unless purchase.save
-        flash[:notice] = "エラーが発生しました。再度実行してください。"
-        render 'show'
-      end
-      flash[:notice] = "ありがとうございました。商品発送までしばらくお待ちください"
-      redirect_to @product
-    elsif @product.inprocess? && @product.sold! 
-      redirect_to @product
+    return redirect_to @product if @product.inprocess? && @product.sold! 
+    unless @product.purchase? && @product.inprocess!
+      flash[:notice] = '購入もしくは出荷中の商品は更新できません。'
+      return render :show 
+    end
+    purchase = current_user.purchases.build(product: @product)
+    if purchase.save
+      redirect_to @product, notice: 'ありがとうございました。商品発送までしばらくお待ちください'
     else
-      flash[:notice] = "エラーが発生しました。再度実行してください。"
-      render 'show'
+      render :show 
     end
   end
 

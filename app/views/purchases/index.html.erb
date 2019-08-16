@@ -32,7 +32,7 @@
                     <% if user_signed_in? && current_user.already_liked?(product) %>
                       <%=link_to "いいね解除", likes_delete_path(id: product.id), method: :delete, class: "btn btn-outline-secondary" %>
                     <% else%>
-                      <%=link_to "いいね！", likes_create_path(id: product.id), method: :post, class: "btn btn-outline-secondary" %>
+                      <%=link_to "いいね！", product_likes_path(id: product.id), method: :post, class: "btn btn-outline-secondary" %>
                     <% end %>
                   </div>
                 </div>

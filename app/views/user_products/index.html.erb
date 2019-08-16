@@ -30,9 +30,9 @@
                     <p>¥<%= product.price.to_s(:delimited) %>円</p>
                     <%=link_to "商品詳細", product, class: "btn btn-outline-secondary" %>
                     <% if user_signed_in? && current_user.already_liked?(product) %>
-                      <%=link_to "いいね解除", likes_delete_path(id: product.id), method: :delete, class: "btn btn-outline-secondary" %>
+                      <%=link_to "いいね解除", product_like_path(product,current_user), method: :delete, class: "btn btn-outline-secondary" %>
                     <% else%>
-                      <%=link_to "いいね！", likes_create_path(id: product.id), method: :post, class: "btn btn-outline-secondary" %>
+                      <%=link_to "いいね！", product_likes_path(product), method: :post, class: "btn btn-outline-secondary" %>
                     <% end %>
                   </div>
                 </div>
