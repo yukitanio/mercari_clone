@@ -37,6 +37,10 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def destroy
+    current_user.profile.destory
+  end
+
   private
     def profile_params
       params.require(:profile).permit(:picture, :name, :content)

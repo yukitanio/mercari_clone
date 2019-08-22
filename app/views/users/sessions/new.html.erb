@@ -11,6 +11,12 @@
       <div class="card-header text-center">
         ログイン
       </div>
+      <% if notice %>
+        <div class="alert alert-danger pl-5"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger pl-5"><%= alert %></div>
+      <% end %>
       <div class="card-body">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
           <%= render "devise/shared/error_messages", resource: resource %>

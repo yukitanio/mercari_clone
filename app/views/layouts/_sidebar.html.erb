@@ -2,7 +2,6 @@
   <div class="card">
     <div class="list-group">
       <%= link_to "マイページ", profile_path(current_user), class: 'btn btn-default list-group-item list-group-item-action' %>
-      <%= link_to "出品する", new_product_path, class: 'btn btn-default list-group-item list-group-item-action' %>
       <%= link_to "出品した商品-出品中", user_products_path, class: 'btn btn-default list-group-item list-group-item-action' %>
       <%= link_to "出品した商品-取引中", user_products_inprocess_index_path, class: 'btn btn-default list-group-item list-group-item-action' %>
       <%= link_to "出品した商品-売却済", user_products_sold_index_path, class: 'btn btn-default list-group-item list-group-item-action' %>
