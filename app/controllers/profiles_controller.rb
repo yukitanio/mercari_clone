@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = @user.build_profile(profile_params)
     if @profile.save
-      redirect_to @profile, notice: "登録しました"
+      redirect_to @profile, notice: t('.success')
     else
       render 'new'
     end
@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = @user.profile
     if @profile.update_attributes(profile_params)
-      redirect_to @profile, notice: "編集しました"
+      redirect_to @profile, notice: t('.success')
     else
       render 'edit'
     end

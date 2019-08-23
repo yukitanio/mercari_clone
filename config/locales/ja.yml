@@ -1,5 +1,26 @@
 ---
 ja:
+  likes:
+    create: 
+      success: "いいね！しました"
+      alert: "いいね！できませんでした。再度実行してください。"
+    destroy:
+      success: "いいね！取り消しました"
+      alert: "いいね！取り消しできませんでした。再度実行してください。"
+  products:
+    create:
+      success: "出品しました"
+    update:
+      success: "編集しました"
+  profiles:
+    create:
+      success: "登録しました"
+    update:
+      success: "編集しました"
+  purchases:
+    update:
+      success: "ありがとうございました。商品発送までしばらくお待ちください"
+      alert: "購入もしくは出荷中の商品は更新できません。"
   enums:
     product:
       status:

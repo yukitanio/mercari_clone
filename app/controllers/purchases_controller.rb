@@ -10,12 +10,12 @@ class PurchasesController < ApplicationController
     @product = Product.find(params[:id])
     return redirect_to @product if @product.inprocess? && @product.sold! 
     unless @product.purchase? && @product.inprocess!
-      flash[:notice] = '購入もしくは出荷中の商品は更新できません。'
+      flash[:notice] = t('.alert')
       return render :show 
     end
     purchase = current_user.purchases.build(product: @product)
     if purchase.save
-      redirect_to @product, notice: 'ありがとうございました。商品発送までしばらくお待ちください'
+      redirect_to @product, notice: t('.success')
     else
       render :show 
     end
