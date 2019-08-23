@@ -22,11 +22,11 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'kaminari'
 gem 'enum_help'
-gem 'fog'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
+  gem "shoulda-matchers"
 end
 
 group :development do
@@ -42,6 +42,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'rspec-rails'
+end
+
+group :production do
+  gem 'fog'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

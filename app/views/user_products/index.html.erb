@@ -1,48 +1,48 @@
 <%= render 'layouts/header'%>
 <main class="bg-light">
-    <div>
-        <nav aria-label="breadcrumb" role="navigation">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
-                <li class="breadcrumb-item"><%=link_to "出品した商品-出品中", @product %></li>
-            </ol>
-        </nav>
-        <div class="container">
-            <% if notice.present? %>
-            <div class="alert alert-success pl-5"><%= notice %></div>
-            <% end%>
-            <div class="row mb-3">
-                <%= render 'layouts/sidebar'%>
-                <div class="col-8 bg-white">
-                    <div class="row">
-                        <div class="col-12 text-center pt-3">
-                            <h2>出品した商品-出品中</h2>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row mb-3">
-                    <% @products.each do |product|%>
-                        <div class="col-4">
-                            <div class="card">
-                                <%= image_tag("#{product.picture}", class: "card-img-top")%>
-                                <div class="card-body">
-                                    <h4 class="card-title"><%= product.name %></h4>
-                                    <p>¥<%= product.price.to_s(:delimited) %>円</p>
-                                    <%=link_to "商品詳細", product, class: "btn btn-outline-secondary" %>
-                                    <% if user_signed_in? && current_user.already_liked?(product) %>
-                                        <%=link_to "いいね解除", likes_delete_path(id: product.id), method: :delete, class: "btn btn-outline-secondary" %>
-                                    <% else%>
-                                        <%=link_to "いいね！", likes_create_path(id: product.id), method: :post, class: "btn btn-outline-secondary" %>
-                                    <% end %>
-                                </div>
-                            </div>
-                        </div>
-                    <% end %>
-                    </div>
-                    <%= paginate @products %>
-                </div>
+  <div>
+    <nav aria-label="breadcrumb" role="navigation">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
+        <li class="breadcrumb-item"><%=link_to "出品した商品-出品中", @product %></li>
+      </ol>
+    </nav>
+    <div class="container">
+      <% if notice.present? %>
+        <div class="alert alert-success pl-5"><%= notice %></div>
+      <% end%>
+      <div class="row mb-3">
+        <%= render 'layouts/sidebar'%>
+        <div class="col-8 bg-white">
+          <div class="row">
+            <div class="col-12 text-center pt-3">
+              <h2>出品した商品-出品中</h2>
             </div>
+          </div>
+          <hr>
+          <div class="row mb-3">
+            <% @products.each do |product|%>
+              <div class="col-4">
+                <div class="card">
+                  <%= image_tag("#{product.picture}", class: "card-img-top")%>
+                  <div class="card-body">
+                    <h4 class="card-title"><%= product.name %></h4>
+                    <p>¥<%= product.price.to_s(:delimited) %>円</p>
+                    <%=link_to "商品詳細", product, class: "btn btn-outline-secondary" %>
+                    <% if user_signed_in? && current_user.already_liked?(product) %>
+                      <%=link_to "いいね解除", product_like_path(product,current_user), method: :delete, class: "btn btn-outline-secondary" %>
+                    <% else%>
+                      <%=link_to "いいね！", product_likes_path(product), method: :post, class: "btn btn-outline-secondary" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= paginate @products %>
         </div>
+      </div>
     </div>
+  </div>
 </main>
 <%= render 'layouts/footer'%> 

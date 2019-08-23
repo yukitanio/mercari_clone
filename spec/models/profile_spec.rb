@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
   before do
-    @user = FactoryBot.create(:user)
+    @user = create(:user)
     @profile = @user.build_profile(name: 'yamada')
   end
 

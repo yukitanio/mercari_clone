@@ -1,45 +1,45 @@
 <%= render 'layouts/header'%>
 <main class="bg-light">
-    <nav aria-label="breadcrumb" role="navigation">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
-            <li class="breadcrumb-item"><%=link_to "商品一覧", products_path %></li>
-        </ol>
-    </nav>
-    <section class="py-5">
-        <h2 class="pickup-head text-center pb-3">商品一覧</h2>
-        <div class="container">
-            <div class="row">
-                <% if @products.any? %>
-                    <% @products.each do |product|%>
-                        <div class="col-sm-6 col-md-3 mb-3">
-                            <div class="card">
-                                <%= image_tag("#{product.picture}", class: "card-img-top")%>
-                                <div class="card-body">
-                                    <h4 class="card-title"><%= product.name %></h4>
-                                    <p>¥<%= product.price.to_s(:delimited) %>円</p>
-                                    <%=link_to "購入画面", product, class: "btn btn-outline-secondary" %>
-                                    <% if user_signed_in? && current_user.already_liked?(product) %>
-                                        <%=link_to "いいね解除", likes_delete_path(id: product.id), method: :delete, class: "btn btn-outline-secondary" %>
-                                    <% else%>
-                                        <%=link_to "いいね！", likes_create_path(id: product.id), method: :post, class: "btn btn-outline-secondary" %>
-                                    <% end %>
-                                </div>
-                            </div>
-                        </div>
-                    <% end %>
-                <% else %>
-                    <div class="col-12 ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">該当する商品はありません</h4>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
-                <%= paginate @products %>
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%=link_to "ホーム", root_path %></li>
+      <li class="breadcrumb-item"><%=link_to "商品一覧", products_path %></li>
+    </ol>
+  </nav>
+  <section class="py-5">
+    <h2 class="pickup-head text-center pb-3">商品一覧</h2>
+    <div class="container">
+      <div class="row">
+        <% if @products.any? %>
+          <% @products.each do |product|%>
+            <div class="col-sm-6 col-md-3 mb-3">
+              <div class="card">
+                <%= image_tag("#{product.picture}", class: "card-img-top")%>
+                <div class="card-body">
+                  <h4 class="card-title"><%= product.name %></h4>
+                  <p>¥<%= product.price.to_s(:delimited) %>円</p>
+                  <%=link_to "購入画面", product, class: "btn btn-outline-secondary" %>
+                  <% if user_signed_in? && current_user.already_liked?(product) %>
+                    <%=link_to "いいね解除", product_like_path(product,current_user), method: :delete, class: "btn btn-outline-secondary" %>
+                  <% else%>
+                    <%=link_to "いいね！", product_likes_path(product), method: :post, class: "btn btn-outline-secondary" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
+          <% end %>
+        <% else %>
+          <div class="col-12 ">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">該当する商品はありません</h4>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= paginate @products %>
+      </div>
+    </div>
+  </section>
 </main>
 <%= render 'layouts/footer'%> 

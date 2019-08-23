@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
   root "top_pages#index"
-  resources :products
-  resources :categories, only:[:index]
+  resources :products do
+    resources :likes, only: %i(create destroy)
+  end
+  resources :categories, only:%i(index)
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
     :passwords => 'users/passwords'
   } 
-  resources :profiles
-  resources :purchases, only:[:index, :update]
-  resources :user_products, only:[:index]
-  resources :user_products_inprocess, only:[:index]
-  resources :user_products_sold, only:[:index]
-  resources :likes, only:[:index]
-  post 'likes/:id', to: 'likes#create', as: :likes_create
-  delete 'likes/:id', to: 'likes#destroy', as: :likes_delete
+  resources :profiles, except: %i(destroy)
+  resources :purchases, only: %i(index update)
+  resources :user_products, only: %i(index)
+  resources :user_products_inprocess, only: %i(index)
+  resources :user_products_sold, only: %i(index)
+  resources :likes, only: %i(index)
 end

@@ -1,13 +1,13 @@
 <% if flash.notice.present? %>
-    <div class="text-center">
-        <%= content_tag(:div, flash.notice, class: "alert alert-success") %>
-    </div>
+  <div class="text-center">
+    <%= content_tag(:div, flash.notice, class: "alert alert-success") %>
+  </div>
 <% end %>
 <% if @product.errors.any?%>
-    <ul>
+  <ul>
     <% @product.errors.full_messages.each do |msg|%>
-        <li class="text-danger"><%= msg %></li>
+      <li class="text-danger"><%= msg %></li>
     <% end %>
-    </ul>
+  </ul>
 <% end %>
 

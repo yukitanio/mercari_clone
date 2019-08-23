@@ -1,9 +1,8 @@
 class UserProductsController < ApplicationController
-    before_action :ransack_set
-    before_action :authenticate_user!
+  before_action :ransack_set
+  before_action :authenticate_user!
 
-    def index
-        @user = current_user
-        @products = @user.products.where(transaction_status: "purchase").page(params[:page]).per(30)
-    end
+  def index
+    @products = current_user.products.purchase.page(params[:page])
+  end
 end
