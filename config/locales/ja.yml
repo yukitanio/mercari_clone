@@ -35,6 +35,13 @@ ja:
         sold: 売却済み
 
   activerecord:
+    models:
+      product: 商品
+    attributes:
+      product:
+        name: 商品名
+        picture: 商品画像
+        price: 価格  
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
